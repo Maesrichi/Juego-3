@@ -10,16 +10,16 @@ pacman = vector(-40, -80)
 
 
 ghosts = [
-    [vector(-180, 160), vector(5, 0), 'red'],
-    [vector(-180, -160), vector(0, 5), 'pink'],
-    [vector(100, 160), vector(0, -5), 'cyan'],
-    [vector(100, -160), vector(-5, 0), 'orange'],
+    [vector(-180, 160), vector(10, 0), 'red'],
+    [vector(-180, -160), vector(0, 10), 'pink'],
+    [vector(100, 160), vector(0, -10), 'cyan'],
+    [vector(100, -160), vector(-10, 0), 'orange'],
 ]
 
 tiles = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
-    0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0,
+    0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0,
     0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
     0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0,
     0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0,
@@ -115,40 +115,40 @@ def move():
     dot(20, 'yellow')
 
     for point, course, color_name in ghosts:
-        
+
         if color_name == 'red':
             target = vector(pacman.x, pacman.y)
         elif color_name == 'pink':
-            
+
             target = vector(pacman.x + aim.x * 10, pacman.y + aim.y * 10)
         elif color_name == 'cyan':
-            
+
             target = vector(pacman.x - aim.x * 6, pacman.y - aim.y * 6)
         elif color_name == 'orange':
-            
+
             if abs(pacman - point) < 100:
                 target = vector(100, -160)
             else:
                 target = vector(pacman.x, pacman.y)
 
-        options = [vector(5, 0), vector(-5, 0), vector(0, 5), vector(0, -5)]
+        options = [vector(10, 0), vector(-10, 0), vector(0, 10), vector(0, -10)]
         backward = vector(-course.x, -course.y)
-        
-        
+
+
         valid_options = []
         for opt in options:
             if valid(point + opt):
                 valid_options.append(opt)
-                
-        
+
+
         forward_options = []
         for opt in valid_options:
             if opt != backward:
                 forward_options.append(opt)
-                
+
         choices = forward_options if len(forward_options) > 0 else valid_options
 
-        
+
         best_plan = course
         min_dist = float('inf')
         for opt in choices:
@@ -157,7 +157,7 @@ def move():
                 min_dist = dist
                 best_plan = opt
 
-        
+
         if (point.x % 20 == 0 and point.y % 20 == 0) or not valid(point + course):
             course.x = best_plan.x
             course.y = best_plan.y
@@ -174,7 +174,7 @@ def move():
         if abs(pacman - point) < 20:
             return
 
-    ontimer(move, 100)
+    ontimer(move, 70)
 
 def change(x, y):
     "Change pacman aim if valid."
