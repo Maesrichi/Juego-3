@@ -131,7 +131,7 @@ def move():
             else:
                 target = vector(pacman.x, pacman.y)
 
-        options = [vector(5, 0), vector(-5, 0), vector(0, 5), vector(0, -5)]
+        options = [vector(10, 0), vector(-10, 0), vector(0, 10), vector(0, -10)]
         backward = vector(-course.x, -course.y)
 
 
