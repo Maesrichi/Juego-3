@@ -10,10 +10,10 @@ pacman = vector(-40, -80)
 
 
 ghosts = [
-    [vector(-180, 160), vector(5, 0), 'red'],
-    [vector(-180, -160), vector(0, 5), 'pink'],
-    [vector(100, 160), vector(0, -5), 'cyan'],
-    [vector(100, -160), vector(-5, 0), 'orange'],
+    [vector(-180, 160), vector(10, 0), 'red'],
+    [vector(-180, -160), vector(0, 10), 'pink'],
+    [vector(100, 160), vector(0, -10), 'cyan'],
+    [vector(100, -160), vector(-10, 0), 'orange'],
 ]
 
 tiles = [
