@@ -115,17 +115,17 @@ def move():
     dot(20, 'yellow')
 
     for point, course, color_name in ghosts:
-        
+
         if color_name == 'red':
             target = vector(pacman.x, pacman.y)
         elif color_name == 'pink':
-            
+
             target = vector(pacman.x + aim.x * 10, pacman.y + aim.y * 10)
         elif color_name == 'cyan':
-            
+
             target = vector(pacman.x - aim.x * 6, pacman.y - aim.y * 6)
         elif color_name == 'orange':
-            
+
             if abs(pacman - point) < 100:
                 target = vector(100, -160)
             else:
@@ -133,22 +133,22 @@ def move():
 
         options = [vector(5, 0), vector(-5, 0), vector(0, 5), vector(0, -5)]
         backward = vector(-course.x, -course.y)
-        
-        
+
+
         valid_options = []
         for opt in options:
             if valid(point + opt):
                 valid_options.append(opt)
-                
-        
+
+
         forward_options = []
         for opt in valid_options:
             if opt != backward:
                 forward_options.append(opt)
-                
+
         choices = forward_options if len(forward_options) > 0 else valid_options
 
-        
+
         best_plan = course
         min_dist = float('inf')
         for opt in choices:
@@ -157,7 +157,7 @@ def move():
                 min_dist = dist
                 best_plan = opt
 
-        
+
         if (point.x % 20 == 0 and point.y % 20 == 0) or not valid(point + course):
             course.x = best_plan.x
             course.y = best_plan.y
